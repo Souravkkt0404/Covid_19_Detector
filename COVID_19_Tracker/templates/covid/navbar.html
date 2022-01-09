@@ -1,0 +1,40 @@
+<div class="container-fluid bg-white mb-5 pb-2 pt-2 shadow sticky-top top-fixed">
+    <nav class="navbar navbar-expand-md navbar-light bg-white ">
+        <a class="navbar-brand" href="{% url 'COVID-19:search_country' %}">COVID-19</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-4">
+                <li class="nav-item active ml-4">
+                    <!-- a class="nav-link" href="{% url 'COVID-19:search_country' %}">Home <span
+                            class="sr-only">(current)</span></a> -->
+                </li>
+
+                <form action="{% url 'COVID-19:search_country' %}" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="input-group  ml-4 mr-4 rounded">
+
+                        {% for form in searchform %}
+                        {{form}}
+                        {% endfor %}
+                        <div class="input-group-prepend">
+                            <button class="btn border-0" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="list_search" class="d-none d-sm-none">
+                    </div>
+                </form>
+
+                <li class="nav-item ml-4">
+                    <!-- <a class="nav-link" href="#">Statistics</a> -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

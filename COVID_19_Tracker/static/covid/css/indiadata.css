@@ -1,0 +1,65 @@
+.opacity-1{
+}
+.search-upper{
+    width:1px;
+    height:20px;
+    background-color:rgba(0,0,0,0.2);
+}
+.map-margin{
+        margin-left: -250px;
+}
+
+.dataTables_wrapper{
+    z-index:999;
+}
+input[type="search" i]{
+    overflow:hidden !important;
+    white-space:nowrap !important;
+    border-right:4px solid rgba(0,0,0,0.5);
+    width:22ch;
+}
+@keyframes writer{
+    0%{
+        width:0ch;
+    }
+    100%{
+    width:22ch;
+    }
+}
+.today::before{
+    content:"+";
+}
+.leaflet-control-container::nth-child(2){
+    display:none !important;
+}
+.leaflet-container .leaflet-control-attribution{
+    display:none !important;
+}
+@media (max-width:768px){
+ .dataTables_wrapper{
+    z-index:999;
+    overflow:scroll;
+}
+}
+@media (max-width: 992px){
+    .h3{
+    font-size:1.6rem !important;
+    }
+}
+@media (max-width:768px){
+.h3{
+    font-size:1.18rem !important;
+}
+}
+@media (max-width: 576px){
+.h3{
+    font-size:1.7rem !important;
+}
+}
+@media (max-width: 452px){
+.h3{
+    font-size:1.7rem !important;
+}
+}
+
+

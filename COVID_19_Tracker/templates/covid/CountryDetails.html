@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %} {% if total %} India {% elif global %}Global {% else %}{{country.country}} {% endif %} {% endblock %}
+{% block css %}
+<link href="{% static 'covid/css/indiadata.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+{% include 'covid/navbar.html' %}
+<div class="container-fluid">
+    <div class="row d-md-none">
+        <div class="col">
+            <p class="h2 alert-danger text-danger w-50 text-center rounded pt-1 pb-1">
+                {% if global %}
+                Global
+                {% elif total %}
+                India
+                {% else %}
+                {{country.country|capfirst}}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="row d-md-none mb-5">
+        <div class="col">
+            {% if total %}
+            <!-- <small class="text-muted">Last Update on {{total.last_update_time|date:"d M Y , h:i A"}}
+                ({{total.last_update_time|naturaltime}})</small> -->
+            {% else %}
+            <!-- <small class="text-muted">Last Update on {{country.date|date:"d M Y , h:i A"}}
+                ({{country.date|naturaltime}})</small> -->
+            {% endif %}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col">
+            {% if total %}
+            <div class="row d-none d-sm-flex" style="margin: 10px;">
+                <button style="font-size: 20px;background-color:honeydew;margin: 20px;padding: 12px;border: none;border-radius: 20px;float: left;text-align: center;width: 170px;height: 100px;"><p class="offset-2 text-muted">SEARCH STATE NAME:</p></button>
+                <span class="offset-6 mb-1 search-upper d-none d-sm-inline-block"></span>
+                    <div class="input-group mb-3 shadow mb-5 p-2 ml-4 mr-4 rounded dataTables_filter">
+                        <input area-controls="table_id" aria-describedby="table_id_info"
+                               class="form-control border-0 search" placeholder="Type state or district name" type="search">
+                        <div class="input-group-append">
+                            <button class="btn border-0" type="submit"><i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                {% if total %}
+                {% include 'covid/IndiaData.html' %}
+                {% else %}
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col mb-4">
+                    <!--    Card Area    -->
+                    <div class="card alert-danger border-0 w-100">
+                        <div class="card-body">
+                            <h5 class="card-title h3">Confirmed</h5>
+                            <small class="text-muted counterUp today">
+                                {{country.newConfirmed}}
+                            </small>
+                            <p class="card-text h3">
+                                {{country.totalConfirmed|intword|slice:":7"|upper}}
+                            </p>
+
+                        </div>
+                    </div>
+                    <!--    End - card Area  -->
+                </div>
+                {% if country.active %}
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col ">
+                    <!--    Card Area    -->
+                    <div class="card alert-primary border-0 w-100">
+                        <div class="card-body">
+                            <h5 class="card-title h3">Active</h5>
+                            <small class="text-muted counterUp today">{{total.active}}</small>
+                            <p class="card-text counterUp h3">
+                                {{total.active|intword}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--    End - card Area  -->
+                </div>
+                {% endif %}
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col mb-4">
+                    <!--    Card Area    -->
+                    <div class="card alert-success border-0 w-100">
+                        <div class="card-body">
+                            <h5 class="card-title h3">Recovered</h5>
+                            <small class="text-muted counterUp today">{{country.newRecovered}}</small>
+                            <p class="card-text h3">
+                                {{country.totalRecoverd|intword|slice:":6"|upper}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--    End - card Area  -->
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col">
+                    <!--    Card Area    -->
+                    <div class="card alert-secondary border-0 w-100">
+                        <div class="card-body">
+                            <h5 class="card-title h3">Deaths</h5>
+                            <small class="text-muted counterUp today">{{country.newDeaths}}</small>
+                            <p class="card-text  h3">
+                                {{country.totalDeaths|intword|slice:":5"|upper}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--    End - card Area  -->
+                </div>
+                {% endif %}
+            </div>
+
+
+        </div>
+        <div class="mt-5 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col">
+                    <div class="row d-none d-md-block">
+                        <div class="col">
+                            <p class="h2 alert-danger text-danger w-50 text-center rounded pt-1 pb-1">
+                                {% if global %}
+                                Global
+                                {% elif total %}
+                                India
+                                {% else %}
+                                {{country.country|capfirst}}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row d-none d-md-block">
+                        <div class="col">
+                            {% if total %}
+                            <!-- <small class="text-muted">Last Update on {{total.last_update_time|date:"d M Y , h:i A"}}
+                                ({{total.last_update_time|naturaltime}})</small> -->
+                            {% else %}
+                           <!--  <small class="text-muted">Last Update on {{country.date|date:"d M Y , h:i A"}}
+                                ({{country.date|naturaltime}})</small> -->
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{map|safe}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--     Data table show with in the gap       -->
+
+    <div class="row mt-5">
+        {% if total %}
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            {% if total %}
+            <div class="row  d-sm-none">
+                <p class="offset-4 text-muted">Search your disctrict or state</p>
+                <span class="offset-6 mb-1 search-upper d-none d-sm-inline-block"></span>
+                    <div class="input-group mb-3 shadow mb-5 p-2 ml-4 mr-4 rounded dataTables_filter">
+                        <input area-controls="table_id" aria-describedby="table_id_info"
+                               class="form-control border-0 search" placeholder="Type state or district name" type="search">
+                        <div class="input-group-append">
+                            <button class="btn border-0" type="submit"><i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+            </div>
+            {% endif %}
+            <div class="container shadow p-4  bg-white shadow-box table-Data">
+                <table class="display table table-hover" id="table_id">
+                    <thead>
+                    <tr class="bg-primary text-white">
+                        <th>State</th>
+                        <th>Total Confirmed</th>
+                        <th>Total Deaths</th>
+                        <th>Total Recoverd</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for India_Data in indiadata %}
+                    {% if India_Data.state == "" %}
+                    {% comment %} not show{% endcomment %}
+                    {% else %}
+                    <tr>
+
+                        <td>{{India_Data.state}}</td>
+                        <td>{{India_Data.confirmed}}</td>
+                        <td>{{India_Data.deaths}}</td>
+                        <td>{{India_Data.recovered}}</td>
+                        <td>{{India_Data.last_update_time|date:"d M Y"}}</td>
+
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- End of the Table Data -->
+        </div>
+        {% elif global %}
+        {% include 'covid/TableData.html' %}
+        {% else %}
+        <p class="text-secondary ml-5">Sorry the table only available for India and Global only</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'covid/js/country.js' %}"></script>
+<script>
+    $(document).ready(function(){
+
+        let listArr=[];
+        var c=0;
+       {% for i in country_name_list %}
+            listArr[c] = "{{i}}";
+            c++;
+     {% endfor %}
+     var country_list_str="";
+     for( let j=0;j<listArr.length;j++)
+     {
+        country_list_str+="<p class='country_list text-muted'>"+listArr[j]+"</p>";
+      }
+
+
+      $("[data-toggle='popover']").popover();
+     $("[data-toggle='popover']").attr('data-content',country_list_str);
+     $('.form-control').click(function(){
+        $('.popover').addClass('overflow-hidden h-25 w-100');
+     });
+     $('.form-control').keyup(function(){
+        var data=$('.form-control').val().toUpperCase();
+        if(data != '')
+        {
+            let x=document.getElementsByClassName("country_list");
+            for(var i=0;i<x.length;i++)
+            {
+                let name=x[i].textContent.toUpperCase();
+                if(name.indexOf(data) > -1){
+                x[i].style.display="";
+                }
+                else{
+                x[i].style.display="none";
+                }
+            }
+        }
+     });
+    });
+</script>
+{% endblock %}
